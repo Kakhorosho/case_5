@@ -18,28 +18,28 @@ def first_team():
             team_1[3] -= 5
             team_1[1] += 100
             print(ru.EVENT_1_1_YES)
-            print(list(zip(ru.STOCK, team_1)))
         else:
             print(ru.EVENT_1_1_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     def event_1_2(answer):
         if answer == 'да':
             team_1[2] -= 10
             team_1[4] += 20
-            print(list(zip(ru.STOCK, team_1)))
         else:
             print(ru.EVENT_1_2_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     def event_1_3(answer):
         if answer == 'да':
             print(ru.EVENT_1_3_YES)
-            print(list(zip(ru.STOCK, team_1)))
         else:
             team_1[3] -= 20
             print(ru.EVENT_1_3_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     match random_nmr_1:
         case 1:
@@ -80,7 +80,7 @@ def first_team():
                 team_1[0] -= 50 * complaints_list
 
     a.pop(random_nmr_1 - 1)
-    print(list(zip(ru.STOCK, team_1)))
+    return list(zip(ru.STOCK, team_1))
 
 
 def second_team():
@@ -94,12 +94,12 @@ def second_team():
         team_2[4] -= 10
         if answer == 'да':
             team_2[2] -= 10
-            print(list(zip(ru.STOCK, team_2)))
         else:
             team_2[2] -= 25
             team_2[4] -= 5
             print(ru.EVENT_2_1_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     def event_2_2(answer):
         if answer == 'да':
@@ -107,30 +107,28 @@ def second_team():
             if random_nmr_3 == 1:
                 team_2[0] -= 30
                 print(ru.EVENT_2_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_2)))
             else:
                 team_2[0] -= 30
                 print(ru.EVENT_2_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_2)))
         else:
             print(ru.EVENT_2_2_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     def event_2_3(answer):
         if answer == 'да':
             random_nmr_4 = random.choice(d)
             if random_nmr_4 == 1:
                 print(ru.EVENT_2_3_FIRST_YES)
-                print(list(zip(ru.STOCK, team_2)))
             else:
                 team_2[2] += 40
                 team_2[0] += 60
                 print(ru.EVENT_2_3_SECOND_YES)
-                print(list(zip(ru.STOCK, team_2)))
         else:
             team_2[2] -= 20
             print(ru.EVENT_2_3_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     match random_nmr_2:
         case 1:
@@ -164,7 +162,7 @@ def second_team():
                 team_2[0] += 29 * auction_list
 
     c.pop(random_nmr_2 - 1)
-    print(list(zip(ru.STOCK, team_2)))
+    return list(zip(ru.STOCK, team_2))
 
 
 def third_team():
@@ -182,21 +180,19 @@ def third_team():
             if random_nmr_6 == 1:
                 team_3[2] -= 50
                 print(ru.EVENT_3_1_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[2] -= 50
                 team_3[3] -= 20
                 print(ru.EVENT_3_1_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
             random_nmr_6 = random.choice(j)
             if random_nmr_6 == 1:
                 team_3[2] -= 50
                 print(ru.EVENT_3_1_FIRST_NO)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 print(ru.EVENT_3_1_SECOND_NO)
-                print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     def event_3_2(answer):
         if answer == 'да':
@@ -204,18 +200,17 @@ def third_team():
             if random_nmr_7 == 1:
                 team_3[0] -= 50
                 print(ru.EVENT_3_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[0] -= 50
                 team_3[3] -= 3
                 print(ru.EVENT_3_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
             team_3[3] -= 400
             team_3[2] -= 450
             team_3[4] -= 300
             print(ru.EVENT_3_2_NO)
-            print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     def event_3_3(answer):
         if answer == 'да':
@@ -224,15 +219,14 @@ def third_team():
                 team_3[1] += 30
                 team_3[2] += 20
                 print(ru.EVENT_3_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[1] += 40
                 print(ru.EVENT_3_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
             team_3[2] -= 20
             print(ru.EVENT_3_3_NO)
-            print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     match random_nmr_5:
         case 1:
@@ -279,10 +273,10 @@ def third_team():
                 team_3[2] -= 50 * resources_list
 
     e.pop(random_nmr_5 - 1)
-    print(list(zip(ru.STOCK, team_3)))
+    return list(zip(ru.STOCK, team_3))
 
 
-for i in range(2):
+for i in range(10):
     if choice_1 == 1:
         print(ru.MOVE_1)
         print(ru.INTRODUCTION_1) if i == 0 else print()
