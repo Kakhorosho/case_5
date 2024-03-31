@@ -60,7 +60,7 @@ def first_team():
 
     complaints_list = []
     for k in range(len(ru.CITIZENS_1)):
-        complaints = input(f'{ru.CITIZENS_1[k]}')
+        complaints = input(f'{ru.HELP} {ru.CITIZENS_1[k]}')
         complaints_list.append(complaints)
 
     new_citizens_list = []
@@ -133,6 +133,7 @@ def second_team():
         if answer == 'да':
             random_nmr_4 = random.choice(d)
             if random_nmr_4 == 1:
+                team_2[3] -= 20
                 print(ru.EVENT_2_3_FIRST_YES)
             else:
                 team_2[2] += 40
@@ -259,7 +260,7 @@ def third_team():
     resources_list = []
     choice_3 = [1, 2, 3, 4]
     for k in range(1, 5):
-        resources = input(f'{ru.DIRECTIONS}. {ru.RESOURCE_1[k - 1]}')
+        resources = input(f'{ru.DIRECTIONS} {ru.RESOURCE_1[k - 1]}')
         resources_list.append(resources)
     for k in range(len(resources_list)):
         if resources_list[k] == 'да':
