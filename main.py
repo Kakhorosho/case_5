@@ -54,12 +54,26 @@ def first_team():
         case _:
             print(ru.EVENT_1_0)
 
-    print(ru.CITIZENS_COMPLAINTS)
-    complaints_list = []
     choice = [1, 2, 3, 4]
-    for k in range(1, 5):
-        complaints = input(f'{ru.CITIZENS_1[k - 1]}')
+    print(ru.CITIZENS_COMPLAINTS)
+    print(list(zip(ru.CITIZENS_1, ru.COMPLAINTS)))
+
+    complaints_list = []
+    for k in range(len(ru.CITIZENS_1)):
+        complaints = input(f'{ru.CITIZENS_1[k]}')
         complaints_list.append(complaints)
+
+    new_citizens_list = []
+    new_complaints_list = []
+
+    for t in range(len(complaints_list)):
+        if complaints_list[t] != 'да':
+            new_citizens_list.append(ru.CITIZENS_1[t])
+            new_complaints_list.append(ru.COMPLAINTS[t])
+
+    ru.CITIZENS_1 = new_citizens_list
+    ru.COMPLAINTS = new_complaints_list
+
     for k in range(len(complaints_list)):
         if complaints_list[k] == 'да':
             complaints_list.pop(k)
@@ -71,13 +85,13 @@ def first_team():
     for choice, complaints_list in zip(choice, complaints_list):
         match choice:
             case 1:
-                team_1[2] -= 50 * complaints_list
+                team_1[2] -= 10 * complaints_list
             case 2:
                 team_1[2] -= 5 * complaints_list
             case 3:
                 team_1[2] -= 20 * complaints_list
             case 4:
-                team_1[0] -= 50 * complaints_list
+                team_1[0] -= 20 * complaints_list
 
     a.pop(random_nmr_1 - 1)
     return list(zip(ru.STOCK, team_1))
