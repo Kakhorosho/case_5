@@ -27,6 +27,7 @@ def first_team():
         if answer == 'да':
             team_1[2] -= 10
             team_1[4] += 20
+            print(ru.EVENT_1_2_YES)
         else:
             print(ru.EVENT_1_2_NO)
 
@@ -232,13 +233,13 @@ def third_team():
             random_nmr_4 = random.choice(g)
             if random_nmr_4 == 1:
                 team_3[1] += 30
-                team_3[2] += 20
+                team_3[2] -= 20
                 print(ru.EVENT_3_2_FIRST_YES)
             else:
                 team_3[1] += 40
+                team_3[2] -= 20
                 print(ru.EVENT_3_2_SECOND_YES)
         else:
-            team_3[2] -= 20
             print(ru.EVENT_3_3_NO)
 
         return list(zip(ru.STOCK, team_3))
