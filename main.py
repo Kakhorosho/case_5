@@ -1,4 +1,5 @@
 import random
+
 import ru_local as ru
 
 print(ru.CHOICE)
@@ -18,28 +19,29 @@ def first_team():
             team_1[3] -= 5
             team_1[1] += 100
             print(ru.EVENT_1_1_YES)
-            print(list(zip(ru.STOCK, team_1)))
         else:
             print(ru.EVENT_1_1_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     def event_1_2(answer):
         if answer == 'да':
             team_1[2] -= 10
             team_1[4] += 20
-            print(list(zip(ru.STOCK, team_1)))
+            print(ru.EVENT_1_2_YES)
         else:
             print(ru.EVENT_1_2_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     def event_1_3(answer):
         if answer == 'да':
             print(ru.EVENT_1_3_YES)
-            print(list(zip(ru.STOCK, team_1)))
         else:
             team_1[3] -= 20
             print(ru.EVENT_1_3_NO)
-            print(list(zip(ru.STOCK, team_1)))
+
+        return list(zip(ru.STOCK, team_1))
 
     match random_nmr_1:
         case 1:
@@ -54,33 +56,42 @@ def first_team():
         case _:
             print(ru.EVENT_1_0)
 
-    print(ru.CITIZENS_COMPLAINTS)
-    complaints_list = []
     choice = [1, 2, 3, 4]
-    for k in range(1, 5):
-        complaints = input(f'{ru.CITIZENS_1[k - 1]}')
+    print(ru.CITIZENS_COMPLAINTS)
+    print(list(zip(ru.CITIZENS_1, ru.COMPLAINTS)))
+
+    complaints_list = []
+    for k in range(len(ru.CITIZENS_1)):
+        complaints = input(f'{ru.HELP} {ru.CITIZENS_1[k]}')
         complaints_list.append(complaints)
+
+    new_citizens_list = []
+    new_complaints_list = []
+
+    for t in range(len(complaints_list)):
+        if complaints_list[t] != 'да':
+            new_citizens_list.append(ru.CITIZENS_1[t])
+            new_complaints_list.append(ru.COMPLAINTS[t])
+
+
     for k in range(len(complaints_list)):
         if complaints_list[k] == 'да':
-            complaints_list.pop(k)
-            complaints_list.insert(k, 1)
+            complaints_list[k] = '1'
         else:
-            complaints_list.pop(k)
-            complaints_list.insert(k, 0)
-
+            complaints_list[k] = '0'
     for choice, complaints_list in zip(choice, complaints_list):
         match choice:
             case 1:
-                team_1[2] -= 50 * complaints_list
+                team_1[2] -= 10 * int(complaints_list)
             case 2:
-                team_1[2] -= 5 * complaints_list
+                team_1[2] -= 5 * int(complaints_list)
             case 3:
-                team_1[2] -= 20 * complaints_list
+                team_1[2] -= 20 * int(complaints_list)
             case 4:
-                team_1[0] -= 50 * complaints_list
+                team_1[0] -= 20 * int(complaints_list)
 
     a.pop(random_nmr_1 - 1)
-    print(list(zip(ru.STOCK, team_1)))
+    return list(zip(ru.STOCK, team_1))
 
 
 def second_team():
@@ -94,12 +105,12 @@ def second_team():
         team_2[4] -= 10
         if answer == 'да':
             team_2[2] -= 10
-            print(list(zip(ru.STOCK, team_2)))
         else:
             team_2[2] -= 25
             team_2[4] -= 5
             print(ru.EVENT_2_1_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     def event_2_2(answer):
         if answer == 'да':
@@ -107,30 +118,29 @@ def second_team():
             if random_nmr_3 == 1:
                 team_2[0] -= 30
                 print(ru.EVENT_2_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_2)))
             else:
                 team_2[0] -= 30
                 print(ru.EVENT_2_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_2)))
         else:
             print(ru.EVENT_2_2_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     def event_2_3(answer):
         if answer == 'да':
             random_nmr_4 = random.choice(d)
             if random_nmr_4 == 1:
+                team_2[3] -= 20
                 print(ru.EVENT_2_3_FIRST_YES)
-                print(list(zip(ru.STOCK, team_2)))
             else:
                 team_2[2] += 40
                 team_2[0] += 60
                 print(ru.EVENT_2_3_SECOND_YES)
-                print(list(zip(ru.STOCK, team_2)))
         else:
             team_2[2] -= 20
             print(ru.EVENT_2_3_NO)
-            print(list(zip(ru.STOCK, team_2)))
+
+        return list(zip(ru.STOCK, team_2))
 
     match random_nmr_2:
         case 1:
@@ -162,9 +172,11 @@ def second_team():
                 team_2[0] += 50 * auction_list
             case 5:
                 team_2[0] += 29 * auction_list
-
+    if int(team_2[0]) > 1000:
+        team_2[0] = 1000
+        print(f'{ru.ADD_PROBLEM}')
     c.pop(random_nmr_2 - 1)
-    print(list(zip(ru.STOCK, team_2)))
+    return list(zip(ru.STOCK, team_2))
 
 
 def third_team():
@@ -182,21 +194,19 @@ def third_team():
             if random_nmr_6 == 1:
                 team_3[2] -= 50
                 print(ru.EVENT_3_1_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[2] -= 50
                 team_3[3] -= 20
                 print(ru.EVENT_3_1_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
             random_nmr_6 = random.choice(j)
             if random_nmr_6 == 1:
                 team_3[2] -= 50
                 print(ru.EVENT_3_1_FIRST_NO)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 print(ru.EVENT_3_1_SECOND_NO)
-                print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     def event_3_2(answer):
         if answer == 'да':
@@ -204,35 +214,33 @@ def third_team():
             if random_nmr_7 == 1:
                 team_3[0] -= 50
                 print(ru.EVENT_3_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[0] -= 50
                 team_3[3] -= 3
                 print(ru.EVENT_3_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
             team_3[3] -= 400
             team_3[2] -= 450
             team_3[4] -= 300
             print(ru.EVENT_3_2_NO)
-            print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     def event_3_3(answer):
         if answer == 'да':
             random_nmr_4 = random.choice(g)
             if random_nmr_4 == 1:
                 team_3[1] += 30
-                team_3[2] += 20
+                team_3[2] -= 20
                 print(ru.EVENT_3_2_FIRST_YES)
-                print(list(zip(ru.STOCK, team_3)))
             else:
                 team_3[1] += 40
+                team_3[2] -= 20
                 print(ru.EVENT_3_2_SECOND_YES)
-                print(list(zip(ru.STOCK, team_3)))
         else:
-            team_3[2] -= 20
             print(ru.EVENT_3_3_NO)
-            print(list(zip(ru.STOCK, team_3)))
+
+        return list(zip(ru.STOCK, team_3))
 
     match random_nmr_5:
         case 1:
@@ -251,7 +259,7 @@ def third_team():
     resources_list = []
     choice_3 = [1, 2, 3, 4]
     for k in range(1, 5):
-        resources = input(f'{ru.DIRECTIONS}. {ru.RESOURCE_1[k - 1]}')
+        resources = input(f'{ru.DIRECTIONS} {ru.RESOURCE_1[k - 1]}')
         resources_list.append(resources)
     for k in range(len(resources_list)):
         if resources_list[k] == 'да':
@@ -279,68 +287,83 @@ def third_team():
                 team_3[2] -= 50 * resources_list
 
     e.pop(random_nmr_5 - 1)
-    print(list(zip(ru.STOCK, team_3)))
+    return list(zip(ru.STOCK, team_3))
 
 
-for i in range(2):
+for i in range(10):
+    print(f'{ru.NUMBER} {i}')
     if choice_1 == 1:
         print(ru.MOVE_1)
         print(ru.INTRODUCTION_1) if i == 0 else print()
         if choice_2 == 2:
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
+
         else:
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
     elif choice_1 == 2:
         if choice_2 == 1:
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
             print(ru.MOVE_1)
             print(ru.INTRODUCTION_1) if i == 0 else print()
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
         else:
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
             print(ru.MOVE_1)
             print(ru.INTRODUCTION_1) if i == 0 else print()
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
     else:
         if choice_2 == 2:
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
             print(ru.MOVE_1)
             print(ru.INTRODUCTION_1) if i == 0 else print()
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
         elif choice_2 == 1:
             print(ru.MOVE_2)
             print(ru.INTRODUCTION_2) if i == 0 else print()
-            print(second_team())
+            print(second_team()) if all(team_2[k] > 0 for k in range(len(team_2))) else print(ru.REMOVAL)
             print(ru.MOVE_3)
             print(ru.INTRODUCTION_3) if i == 0 else print()
-            print(third_team())
+            print(third_team()) if all(team_3[k] > 0 for k in range(len(team_3))) else print(ru.REMOVAL)
             print(ru.MOVE_1)
             print(ru.INTRODUCTION_1) if i == 0 else print()
-            print(first_team())
+            print(first_team()) if all(team_1[k] > 0 for k in range(len(team_1))) else print(ru.REMOVAL)
+
+
+def winner():
+    max_result = max(sum(team_1), sum(team_2), sum(team_3))
+    if max_result == sum(team_1) and all(team_1[k] > 0 for k in range(len(team_1))):
+        print(f'{ru.VINNER_1}')
+    elif max_result == sum(team_2) and all(team_2[k] > 0 for k in range(len(team_2))):
+        print(f'{ru.VINNER_2}')
+    elif max_result == sum(team_3) and all(team_3[k] > 0 for k in range(len(team_3))):
+        print(f'{ru.VINNER_3}')
+
+
+print(winner())
