@@ -290,8 +290,8 @@ def third_team():
     return list(zip(ru.STOCK, team_3))
 
 
-for i in range(10):
-    print(f'{ru.NUMBER} {i}')
+for i in range(5):
+    print(f'{ru.NUMBER} {i + 1}')
     if choice_1 == 1:
         print(ru.MOVE_1)
         print(ru.INTRODUCTION_1) if i == 0 else print()
