@@ -5,8 +5,8 @@ import ru_local as ru
 
 def main():
     print(ru.CHOICE)
-    choice_1 = int(input('Первая команда: '))
-    choice_2 = int(input('Вторая команда: '))
+    choice_1 = int(input(f'{ru.FIRST_TEAM}'))
+    choice_2 = int(input(f'{ru.SECOND_TEAM}'))
     team_1 = [50] * 5
     team_2 = [100] * 5
     team_3 = [200] * 5
