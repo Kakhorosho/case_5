@@ -1,4 +1,4 @@
-# Part of case-study #2: Last of us
+# Case 5: Last of us
 # Developer: Kosheleva Ann
 #            Rusakova Margarita
 #
